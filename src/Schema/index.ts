@@ -15,7 +15,7 @@ import {
   UPDATE_USER_PASSWORD,
 } from './Mutations/User';
 import { GET_ALL_POSTS, GET_POST } from './Queries/Post';
-import { GET_ALL_USERS, GET_USER } from './Queries/User';
+import { GET_ALL_USERS, GET_USER, ME } from './Queries/User';
 const RootQuery = new GraphQLObjectType({
   name: 'RootQuery',
   fields: {
@@ -23,6 +23,7 @@ const RootQuery = new GraphQLObjectType({
     getUser: GET_USER,
     getAllPosts: GET_ALL_POSTS,
     getPost: GET_POST,
+    me: ME,
   },
 });
 const MUTATION = new GraphQLObjectType({

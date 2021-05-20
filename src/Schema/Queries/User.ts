@@ -1,4 +1,5 @@
 import { GraphQLID, GraphQLList, GraphQLString } from 'graphql';
+import { verifyAccessToken } from '../../helpers/jwtHelper';
 import User from '../../models/User';
 
 import types from '../types';
@@ -34,5 +35,12 @@ export const GET_USER = {
 
     // console.log(user);
     return user;
+  },
+};
+export const ME = {
+  type: types.UserType,
+  async resolve(parent: any, args: any, context: any) {
+    await verifyAccessToken(context);
+    return User.findById(context.payload.aud);
   },
 };
