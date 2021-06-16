@@ -3,8 +3,10 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import { schema } from './Schema';
-import { MyContext } from './MyContext';
 const app = express();
+app.get('/', (req, res) => {
+  res.send('<h1>Connected visit /graphql</h1>');
+});
 const apolloServer = new ApolloServer({
   schema: schema,
   context: ({ req, res }) => ({
