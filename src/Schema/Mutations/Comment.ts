@@ -8,7 +8,7 @@ import types from '../types';
 import Comment from '../../models/Comment';
 import Post from '../../models/Post';
 export const CREATE_COMMENT = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     body: { type: GraphQLString },
     userId: { type: GraphQLID },
@@ -36,7 +36,7 @@ export const CREATE_COMMENT = {
   },
 };
 export const UPDATE_COMMENT = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     id: { type: GraphQLID },
     body: { type: GraphQLString },
@@ -57,7 +57,7 @@ export const UPDATE_COMMENT = {
   },
 };
 export const DELETE_COMMENT = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     id: { type: GraphQLID },
   },

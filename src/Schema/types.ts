@@ -55,6 +55,29 @@ const types = {
   MessageType: new GraphQLObjectType({
     name: 'Message',
     fields: () => ({
+      id: { type: GraphQLID },
+      body: { type: GraphQLString },
+      sender: { type: getType('user') },
+      receivers: { type: new GraphQLList(getType('user')) },
+      room: { type: getType('room') },
+      createdAt: { type: GraphQLString },
+      updatedAt: { type: GraphQLString },
+    }),
+  }),
+  RoomType: new GraphQLObjectType({
+    name: 'Room',
+    fields: () => ({
+      id: { type: GraphQLID },
+      users: { type: new GraphQLList(getType('user')) },
+      messages: { type: new GraphQLList(getType('message')) },
+      identifier: { type: GraphQLString },
+      createdAt: { type: GraphQLString },
+      updatedAt: { type: GraphQLString },
+    }),
+  }),
+  InfoType: new GraphQLObjectType({
+    name: 'Info',
+    fields: () => ({
       message: { type: GraphQLString },
       error: { type: GraphQLBoolean },
     }),
@@ -69,7 +92,9 @@ const types = {
       }),
     }),
 };
-const getType = (type: 'user' | 'post' | 'comment' | 'like'): any => {
+const getType = (
+  type: 'user' | 'post' | 'comment' | 'like' | 'message' | 'room'
+): any => {
   switch (type) {
     case 'user':
       return types.UserType;
@@ -79,6 +104,10 @@ const getType = (type: 'user' | 'post' | 'comment' | 'like'): any => {
       return types.CommentType;
     case 'like':
       return types.LikeType;
+    case 'message':
+      return types.MessageType;
+    case 'room':
+      return types.RoomType;
   }
 };
 export default types;

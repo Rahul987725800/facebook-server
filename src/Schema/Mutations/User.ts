@@ -108,7 +108,7 @@ export const LOGIN_USER = {
   },
 };
 export const LOGOUT_USER = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     refreshToken: { type: GraphQLString },
   },
@@ -139,7 +139,7 @@ export const LOGOUT_USER = {
   },
 };
 export const UPDATE_USER_PASSWORD = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     id: { type: GraphQLString },
     email: { type: GraphQLString },
@@ -198,7 +198,7 @@ export const UPDATE_USER_PASSWORD = {
   },
 };
 export const DELETE_USER = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     id: { type: GraphQLID },
   },

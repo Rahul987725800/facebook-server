@@ -8,7 +8,7 @@ import types from '../types';
 import Like from '../../models/Like';
 import Post from '../../models/Post';
 export const CREATE_LIKE = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     userId: { type: GraphQLID },
     postId: { type: GraphQLID },
@@ -34,7 +34,7 @@ export const CREATE_LIKE = {
   },
 };
 export const DELETE_LIKE = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     id: { type: GraphQLID },
   },

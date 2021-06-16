@@ -9,7 +9,7 @@ import Post from '../../models/Post';
 import User from '../../models/User';
 
 export const CREATE_POST = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     body: { type: GraphQLString },
     userId: { type: GraphQLID },
@@ -34,7 +34,7 @@ export const CREATE_POST = {
   },
 };
 export const UPDATE_POST = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     id: { type: GraphQLID },
     body: { type: GraphQLString },
@@ -55,7 +55,7 @@ export const UPDATE_POST = {
   },
 };
 export const DELETE_POST = {
-  type: types.MessageType,
+  type: types.InfoType,
   args: {
     id: { type: GraphQLID },
   },
