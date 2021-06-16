@@ -4,6 +4,7 @@ import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import { schema } from './Schema';
 import socketHelper from './helpers/socket';
+import { createMessage } from './functions/message';
 const app = express();
 app.get('/', (_req, res) => {
   res.send('<h1>Connected visit please visit please /graphql</h1>');
@@ -30,15 +31,22 @@ mongoose
     const server = app.listen(PORT);
     const io = socketHelper.init(server);
     io.on('connection', (socket: any) => {
-      console.log('Client connected with id ' + socket.id);
-      socket.on('send-message', (message: string, room: string) => {
-        if (room) {
-          socket.broadcast.to(room).emit('receive-message', message);
+      // console.log('Client connected with id ' + socket.id);
+      socket.on(
+        'send-message',
+        (message: string, roomId: string, sender: any) => {
+          // console.log(message, room);
+          if (roomId && sender) {
+            socket.broadcast
+              .to(roomId)
+              .emit('receive-message', message, sender);
+            createMessage(roomId, sender.id, message);
+          }
         }
-      });
-      socket.on('join-room', (room: string, cb: any) => {
-        socket.join(room);
-        cb('Joined ' + room);
+      );
+      socket.on('join-room', (roomId: string, cb: any) => {
+        socket.join(roomId);
+        cb('Joined ' + roomId);
       });
     });
   })
