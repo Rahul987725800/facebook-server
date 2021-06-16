@@ -7,5 +7,11 @@ REDIS_PORT=6379
 // mongodb
 MONGODB_URI=mongodb://localhost:27017
 
+
+// for heroku we added Procfile
+// it runs yarn build, which runs tsc
 // note typescript should be a dependency
-// tsc will not run otherwise
+// otherwise tsc will not run otherwise
+// it can't be a devDependency
+// because first dependencies are getting installed
+// then build is run so typescript must be present
