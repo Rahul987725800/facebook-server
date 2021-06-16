@@ -31,8 +31,10 @@ export const verifyAccessToken = (context: MyContext) => {
     if (!authHeader) {
       return reject(new Error('Authorization header not set'));
     }
+
     const bearerToken = authHeader.split(' ');
     // bearerToken[0] = Bearer
+    // console.log(bearerToken);
     const token = bearerToken[1];
     JWT.verify(
       token,

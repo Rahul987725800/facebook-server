@@ -1,4 +1,5 @@
 import { GraphQLID, GraphQLList, GraphQLString } from 'graphql';
+import Post from '../../models/Post';
 import { verifyAccessToken } from '../../helpers/jwtHelper';
 import User from '../../models/User';
 
@@ -41,6 +42,28 @@ export const ME = {
   type: types.UserType,
   async resolve(parent: any, args: any, context: any) {
     await verifyAccessToken(context);
-    return User.findById(context.payload.aud);
+    const user = await User.findById(context.payload.aud);
+    const postIds: string[] = user.posts;
+    const posts = postIds.map((id) =>
+      Post.findById(id)
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'user',
+          },
+        })
+        .populate({
+          path: 'likes',
+          populate: {
+            path: 'user',
+          },
+        })
+    );
+    const result: any = {};
+    for (let key in user) {
+      result[key] = user[key];
+    }
+    result.posts = posts;
+    return result;
   },
 };

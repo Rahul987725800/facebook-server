@@ -1,2 +1,8 @@
 tsc -w
 // in one terminal
+locals 
+// redis (no password needed)
+REDIS_HOSTNAME=127.0.0.1
+REDIS_PORT=6379
+// mongodb
+MONGODB_URI=mongodb://localhost:27017

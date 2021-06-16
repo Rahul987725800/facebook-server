@@ -1,9 +1,11 @@
 import redis from 'redis';
 const redisClient = redis.createClient({
-  port: 6379,
-  host: '127.0.0.1',
+  host: process.env.REDIS_HOSTNAME,
+  port: +process.env.REDIS_PORT!,
+  password: process.env.REDIS_PASSWORD,
 });
 redisClient.on('connect', () => {
   console.log('Client connected to redis...');
+  redisClient.set('my goal', 'skartner');
 });
 export default redisClient;
