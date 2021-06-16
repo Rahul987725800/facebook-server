@@ -6,3 +6,6 @@ REDIS_HOSTNAME=127.0.0.1
 REDIS_PORT=6379
 // mongodb
 MONGODB_URI=mongodb://localhost:27017
+
+// note typescript should be a dependency
+// tsc will not run otherwise

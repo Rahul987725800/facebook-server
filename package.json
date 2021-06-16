@@ -5,6 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "tsc && node dist",
+    "build": "tsc",
     "dev": "nodemon dist",
     "watch": "tsc -w"
   },
@@ -17,8 +18,7 @@
     "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.10",
-    "redis": "^3.1.2",
-    "typescript": "^4.3.2"
+    "redis": "^3.1.2"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
@@ -26,6 +26,7 @@
     "@types/hapi__joi": "^17.1.6",
     "@types/jsonwebtoken": "^8.5.1",
     "@types/node": "^15.3.0",
-    "@types/redis": "^2.8.28"
+    "@types/redis": "^2.8.28",
+    "typescript": "^4.3.2"
   }
 }
