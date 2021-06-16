@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import { schema } from './Schema';
 const app = express();
 app.get('/', (req, res) => {
-  res.send('<h1>Connected visit /graphql</h1>');
+  res.send('<h1>Connected visit please /graphql</h1>');
 });
 const apolloServer = new ApolloServer({
   schema: schema,

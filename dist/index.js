@@ -10,7 +10,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const Schema_1 = require("./Schema");
 const app = express_1.default();
 app.get('/', (req, res) => {
-    res.send('<h1>Connected visit /graphql</h1>');
+    res.send('<h1>Connected visit please /graphql</h1>');
 });
 const apolloServer = new apollo_server_express_1.ApolloServer({
     schema: Schema_1.schema,
