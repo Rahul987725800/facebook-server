@@ -125,7 +125,7 @@ export const LOGOUT_USER = {
             'Redis error while deleting refreshToken from redis db'
           );
         }
-        console.log(val);
+        // console.log(val);
       });
       return {
         message: 'logged out successfully',

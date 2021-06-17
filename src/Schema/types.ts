@@ -58,7 +58,17 @@ const types = {
       id: { type: GraphQLID },
       body: { type: GraphQLString },
       sender: { type: getType('user') },
-      receivers: { type: new GraphQLList(getType('user')) },
+      receivers: {
+        type: new GraphQLList(
+          new GraphQLObjectType({
+            name: 'Receiver',
+            fields: () => ({
+              receiver: { type: getType('user') },
+              seen: { type: GraphQLBoolean },
+            }),
+          })
+        ),
+      },
       room: { type: getType('room') },
       createdAt: { type: GraphQLString },
       updatedAt: { type: GraphQLString },

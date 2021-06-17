@@ -8,8 +8,11 @@ const messageSchema = new Schema(
     },
     receivers: [
       {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+        receiver: {
+          type: Schema.Types.ObjectId,
+          ref: 'User',
+        },
+        seen: Boolean,
       },
     ],
     room: {

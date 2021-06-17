@@ -20,7 +20,14 @@ export const CREATE_MESSAGE = {
       if (args.senderId && room.users.includes(args.senderId)) {
         const message = new Message({
           sender: args.senderId,
-          receivers: room.users.filter((id: any) => id !== args.senderId),
+          receivers: room.users
+            .filter((id: any) => id != args.senderId)
+            .map((id: any) => {
+              return {
+                receiver: id,
+                seen: false,
+              };
+            }),
           room: args.roomId,
           body: args.body,
         });

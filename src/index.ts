@@ -44,9 +44,12 @@ mongoose
           }
         }
       );
-      socket.on('join-room', (roomId: string, cb: any) => {
+      socket.on('join-room', (roomId: string, joinerId: string) => {
         socket.join(roomId);
-        cb('Joined ' + roomId);
+
+        if (joinerId) {
+          socket.broadcast.to(roomId).emit('member-joined-chat', joinerId);
+        }
       });
     });
   })
