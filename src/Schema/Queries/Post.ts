@@ -17,6 +17,7 @@ export const GET_ALL_POSTS = {
       // console.log(context.payload);
       const posts = await Post.find().populate('user');
       // console.log(posts);
+      posts.reverse();
       return {
         posts,
       };

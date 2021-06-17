@@ -9,7 +9,9 @@ import Post from '../../models/Post';
 import User from '../../models/User';
 
 export const CREATE_POST = {
-  type: types.InfoType,
+  type: types.PayloadType('CREATE_POST', {
+    post: { type: types.PostType },
+  }),
   args: {
     body: { type: GraphQLString },
     userId: { type: GraphQLID },
@@ -26,6 +28,20 @@ export const CREATE_POST = {
       await user.save();
       return {
         message: `post created with id ${savedPost.id}`,
+        post: Post.findById(savedPost.id)
+          .populate('user')
+          .populate({
+            path: 'comments',
+            populate: {
+              path: 'user',
+            },
+          })
+          .populate({
+            path: 'likes',
+            populate: {
+              path: 'user',
+            },
+          }),
       };
     }
     return {
