@@ -8,7 +8,9 @@ import types from '../types';
 import Comment from '../../models/Comment';
 import Post from '../../models/Post';
 export const CREATE_COMMENT = {
-  type: types.InfoType,
+  type: types.PayloadType('CREATE_COMMENT', {
+    comment: { type: types.CommentType },
+  }),
   args: {
     body: { type: GraphQLString },
     userId: { type: GraphQLID },
@@ -25,8 +27,10 @@ export const CREATE_COMMENT = {
       await comment.save();
       post.comments.push(comment);
       await post.save();
+
       return {
         message: 'comment created',
+        comment: Comment.findById(comment.id).populate('user'),
       };
     } else {
       return {

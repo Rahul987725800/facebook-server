@@ -15,7 +15,20 @@ export const GET_ALL_POSTS = {
       const payload = await verifyAccessToken(context);
       // console.log(payload);
       // console.log(context.payload);
-      const posts = await Post.find().populate('user');
+      const posts = await Post.find()
+        .populate('user')
+        .populate({
+          path: 'comments',
+          populate: {
+            path: 'user',
+          },
+        })
+        .populate({
+          path: 'likes',
+          populate: {
+            path: 'user',
+          },
+        });
       // console.log(posts);
       posts.reverse();
       return {

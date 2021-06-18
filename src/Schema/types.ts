@@ -49,6 +49,7 @@ const types = {
       id: { type: GraphQLID },
       user: { type: getType('user') },
       post: { type: getType('post') },
+      reactionType: { type: GraphQLString },
       createdAt: { type: GraphQLString },
       updatedAt: { type: GraphQLString },
     }),
