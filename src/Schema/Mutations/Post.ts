@@ -15,6 +15,7 @@ export const CREATE_POST = {
   args: {
     body: { type: GraphQLString },
     userId: { type: GraphQLID },
+    imageUrl: { type: GraphQLString },
   },
   async resolve(parent: any, args: any) {
     const user = await User.findById(args.userId);
@@ -22,6 +23,7 @@ export const CREATE_POST = {
       const newPost = new Post({
         body: args.body,
         user: user.id,
+        imageUrl: args.imageUrl,
       });
       const savedPost = await newPost.save();
       user.posts.push(savedPost);

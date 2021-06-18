@@ -24,6 +24,7 @@ const types = {
     fields: () => ({
       id: { type: GraphQLID },
       body: { type: GraphQLString },
+      imageUrl: { type: GraphQLString },
       user: { type: getType('user') },
       comments: { type: new GraphQLList(getType('comment')) },
       likes: { type: new GraphQLList(getType('like')) },
